@@ -25,6 +25,8 @@
 
 Utilized by the [hash][url-hash] repository `sha3` implementation
 
+Utilized by the [MACs][url-macs] repository for `hmac-sha3` and `kmac` implementations
+
 ### Usage
 
 ```kotlin
@@ -88,5 +90,6 @@ dependencies {
 [url-license]: https://www.apache.org/licenses/LICENSE-2.0.txt
 [url-kotlin]: https://kotlinlang.org
 [url-hash]: https://github.com/KotlinCrypto/hash
+[url-macs]: https://github.com/KotlinCrypto/MACs
 [url-version-catalog]: https://github.com/KotlinCrypto/version-catalog
 [url-sponge-functions]: https://en.wikipedia.org/wiki/Sponge_function
