@@ -23,6 +23,8 @@
 
 [Sponge functions][url-sponge-functions] For Kotlin Multiplatform
 
+Utilized by the [hash][url-hash] repository `sha3` implementation
+
 ### Usage
 
 ```kotlin
@@ -85,5 +87,6 @@ dependencies {
 [url-latest-release]: https://github.com/KotlinCrypto/sponges/releases/latest
 [url-license]: https://www.apache.org/licenses/LICENSE-2.0.txt
 [url-kotlin]: https://kotlinlang.org
+[url-hash]: https://github.com/KotlinCrypto/hash
 [url-version-catalog]: https://github.com/KotlinCrypto/version-catalog
 [url-sponge-functions]: https://en.wikipedia.org/wiki/Sponge_function
