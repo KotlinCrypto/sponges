@@ -23,13 +23,23 @@
 
 [Sponge functions][url-sponge-functions] For Kotlin Multiplatform
 
-<!-- TODO -->
-
 ### Usage
 
 ```kotlin
+// Keccak-p
+
 fun main() {
-    TODO("Not yet implemented")
+    // Separate State classes for Keccak-f[200/400/800/1600]
+    val state = F1600()
+    
+    state.addData(index = 0, 23452345254L)
+    
+    KeccakP(state)
+    
+    state.forEach {
+        println(it)
+    }
+    // ...
 }
 ```
 
