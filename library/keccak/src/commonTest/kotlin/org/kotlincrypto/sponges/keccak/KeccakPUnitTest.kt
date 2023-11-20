@@ -15,7 +15,7 @@
  **/
 package org.kotlincrypto.sponges.keccak
 
-import io.matthewnelson.encoding.builders.Base16
+import io.matthewnelson.encoding.base16.Base16
 import io.matthewnelson.encoding.core.Decoder.Companion.decodeToByteArray
 import org.kotlincrypto.endians.BigEndian
 import kotlin.test.Test
