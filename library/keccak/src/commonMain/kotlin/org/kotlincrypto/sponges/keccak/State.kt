@@ -71,7 +71,16 @@ public sealed class State<N: Number, T: State<N, T>>(
     final override val size: Int get() = P_LEN
     final override fun isEmpty(): Boolean = false
     final override operator fun contains(element: N): Boolean = state.contains(element)
-    final override fun iterator(): Iterator<N> = state.iterator()
+    final override fun iterator(): Iterator<N> = object : Iterator<N> {
+        private val delegate = state.iterator()
+
+        override fun hasNext(): Boolean = delegate.hasNext()
+        override fun next(): N = delegate.next()
+
+        override fun equals(other: Any?): Boolean = delegate == other
+        override fun hashCode(): Int = delegate.hashCode()
+        override fun toString(): String = delegate.toString()
+    }
     final override fun containsAll(elements: Collection<N>): Boolean {
         elements.forEach { n ->
             if (!state.contains(n)) return false
