@@ -1,11 +1,10 @@
 [versions]
-binaryCompat = "0.13.2"
-configuration = "0.1.5"
-encoding = "2.1.0"
+binaryCompat = "0.14.0"
+configuration = "0.2.1"
+encoding = "2.2.1"
 endians = "0.2.0"
-gradleVersions = "0.50.0"
-kotlin = "1.9.21"
-publish = "0.25.3"
+kotlin = "1.9.23"
+publish = "0.27.0"
 
 [libraries]
 gradle-kmp-configuration = { module = "io.matthewnelson:gradle-kmp-configuration-plugin", version.ref = "configuration" }
@@ -19,4 +18,3 @@ endians-endians = { module = "org.kotlincrypto.endians:endians", version.ref = "
 [plugins]
 binaryCompat = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompat" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-gradleVersions = { id = "com.github.ben-manes.versions", version.ref = "gradleVersions" }
