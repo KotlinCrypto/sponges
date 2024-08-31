@@ -1,0 +1,55 @@
+// Klib ABI Dump
+// Targets: [androidNativeArm32, androidNativeArm64, androidNativeX64, androidNativeX86, iosArm64, iosSimulatorArm64, iosX64, js, linuxArm64, linuxX64, macosArm64, macosX64, mingwX64, tvosArm64, tvosSimulatorArm64, tvosX64, wasmJs, wasmWasi, watchosArm32, watchosArm64, watchosDeviceArm64, watchosSimulatorArm64, watchosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <org.kotlincrypto.sponges:keccak>
+final class org.kotlincrypto.sponges.keccak/F1600 : org.kotlincrypto.sponges.keccak/State<kotlin/Long, org.kotlincrypto.sponges.keccak/F1600> { // org.kotlincrypto.sponges.keccak/F1600|null[0]
+    constructor <init>() // org.kotlincrypto.sponges.keccak/F1600.<init>|<init>(){}[0]
+
+    final fun copy(): org.kotlincrypto.sponges.keccak/F1600 // org.kotlincrypto.sponges.keccak/F1600.copy|copy(){}[0]
+}
+
+final class org.kotlincrypto.sponges.keccak/F200 : org.kotlincrypto.sponges.keccak/State<kotlin/Byte, org.kotlincrypto.sponges.keccak/F200> { // org.kotlincrypto.sponges.keccak/F200|null[0]
+    constructor <init>() // org.kotlincrypto.sponges.keccak/F200.<init>|<init>(){}[0]
+
+    final fun copy(): org.kotlincrypto.sponges.keccak/F200 // org.kotlincrypto.sponges.keccak/F200.copy|copy(){}[0]
+}
+
+final class org.kotlincrypto.sponges.keccak/F400 : org.kotlincrypto.sponges.keccak/State<kotlin/Short, org.kotlincrypto.sponges.keccak/F400> { // org.kotlincrypto.sponges.keccak/F400|null[0]
+    constructor <init>() // org.kotlincrypto.sponges.keccak/F400.<init>|<init>(){}[0]
+
+    final fun copy(): org.kotlincrypto.sponges.keccak/F400 // org.kotlincrypto.sponges.keccak/F400.copy|copy(){}[0]
+}
+
+final class org.kotlincrypto.sponges.keccak/F800 : org.kotlincrypto.sponges.keccak/State<kotlin/Int, org.kotlincrypto.sponges.keccak/F800> { // org.kotlincrypto.sponges.keccak/F800|null[0]
+    constructor <init>() // org.kotlincrypto.sponges.keccak/F800.<init>|<init>(){}[0]
+
+    final fun copy(): org.kotlincrypto.sponges.keccak/F800 // org.kotlincrypto.sponges.keccak/F800.copy|copy(){}[0]
+}
+
+sealed class <#A: kotlin/Number, #B: org.kotlincrypto.sponges.keccak/State<#A, #B>> org.kotlincrypto.sponges.keccak/State : kotlin.collections/Collection<#A> { // org.kotlincrypto.sponges.keccak/State|null[0]
+    constructor <init>(kotlin/Byte, kotlin/Array<#A>) // org.kotlincrypto.sponges.keccak/State.<init>|<init>(kotlin.Byte;kotlin.Array<1:0>){}[0]
+
+    final val roundCount // org.kotlincrypto.sponges.keccak/State.roundCount|{}roundCount[0]
+        final fun <get-roundCount>(): kotlin/Byte // org.kotlincrypto.sponges.keccak/State.roundCount.<get-roundCount>|<get-roundCount>(){}[0]
+    final val size // org.kotlincrypto.sponges.keccak/State.size|{}size[0]
+        final fun <get-size>(): kotlin/Int // org.kotlincrypto.sponges.keccak/State.size.<get-size>|<get-size>(){}[0]
+    final val state // org.kotlincrypto.sponges.keccak/State.state|{}state[0]
+        final fun <get-state>(): kotlin/Array<#A> // org.kotlincrypto.sponges.keccak/State.state.<get-state>|<get-state>(){}[0]
+
+    abstract fun copy(): #B // org.kotlincrypto.sponges.keccak/State.copy|copy(){}[0]
+    final fun addData(kotlin/Int, #A) // org.kotlincrypto.sponges.keccak/State.addData|addData(kotlin.Int;1:0){}[0]
+    final fun contains(#A): kotlin/Boolean // org.kotlincrypto.sponges.keccak/State.contains|contains(1:0){}[0]
+    final fun containsAll(kotlin.collections/Collection<#A>): kotlin/Boolean // org.kotlincrypto.sponges.keccak/State.containsAll|containsAll(kotlin.collections.Collection<1:0>){}[0]
+    final fun get(kotlin/Int): #A // org.kotlincrypto.sponges.keccak/State.get|get(kotlin.Int){}[0]
+    final fun isEmpty(): kotlin/Boolean // org.kotlincrypto.sponges.keccak/State.isEmpty|isEmpty(){}[0]
+    final fun iterator(): kotlin.collections/Iterator<#A> // org.kotlincrypto.sponges.keccak/State.iterator|iterator(){}[0]
+    final fun reset() // org.kotlincrypto.sponges.keccak/State.reset|reset(){}[0]
+
+    final object Companion // org.kotlincrypto.sponges.keccak/State.Companion|null[0]
+}
+
+final fun <#A: kotlin/Number> org.kotlincrypto.sponges.keccak/KeccakP(org.kotlincrypto.sponges.keccak/State<#A, *>, kotlin/Byte =...) // org.kotlincrypto.sponges.keccak/KeccakP|KeccakP(org.kotlincrypto.sponges.keccak.State<0:0,*>;kotlin.Byte){0§<kotlin.Number>}[0]
