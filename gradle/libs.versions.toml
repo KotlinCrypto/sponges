@@ -6,7 +6,7 @@ gradle-publish-maven = "0.29.0"
 
 # tests
 encoding = "2.2.2"
-kotlincrypto-endians = "0.3.0"
+kotlincrypto-endians = "0.3.1"
 
 [libraries]
 gradle-kmp-configuration = { module = "io.matthewnelson:gradle-kmp-configuration-plugin", version.ref = "gradle-kmp-configuration" }
