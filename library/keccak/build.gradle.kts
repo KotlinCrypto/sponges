@@ -23,7 +23,7 @@ kmpConfiguration {
             sourceSetTest {
                 dependencies {
                     implementation(libs.encoding.base16)
-                    implementation(libs.endians.endians)
+                    implementation(libs.kotlincrypto.endians.endians)
                 }
             }
         }
