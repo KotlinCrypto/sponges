@@ -16,23 +16,76 @@
 package org.kotlincrypto.sponges.benchmarks
 
 import kotlinx.benchmark.*
-import org.kotlincrypto.sponges.keccak.F1600
-import org.kotlincrypto.sponges.keccak.keccakP
+import org.kotlincrypto.sponges.keccak.*
+import org.kotlincrypto.sponges.keccak.State as KState
+
+private const val ITERATIONS = 5
+private const val TIME_WARMUP = 2
+private const val TIME_MEASURE = 4
+
+abstract class KeccakPBenchmarkBase<N: Number> {
+
+    protected abstract val state: KState<N, *>
+    protected abstract fun Int.toN(): N
+
+    @Setup
+    fun setup() {
+        repeat(state.roundCount.toInt()) { i -> state.addData(i, (i + 10).toN()) }
+    }
+}
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(BenchmarkTimeUnit.MICROSECONDS)
-@Warmup(iterations = 5, time = 2)
-@Measurement(iterations = 5, time = 4)
-open class KeccakPBenchmark {
+@Warmup(iterations = ITERATIONS, time = TIME_WARMUP)
+@Measurement(iterations = ITERATIONS, time = TIME_MEASURE)
+open class F1600Benchmark: KeccakPBenchmarkBase<Long>() {
 
-    private val state = F1600()
-
-    @Setup
-    fun setup() {
-        repeat(21) { index -> state.addData(index, (index + 10).toLong()) }
-    }
+    override val state = F1600()
+    override fun Int.toN(): Long = toLong()
 
     @Benchmark
-    fun keccakP() { state.keccakP() }
+    fun exec() = state.keccakP()
+}
+
+@State(Scope.Benchmark)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(BenchmarkTimeUnit.MICROSECONDS)
+@Warmup(iterations = ITERATIONS, time = TIME_WARMUP)
+@Measurement(iterations = ITERATIONS, time = TIME_MEASURE)
+open class F800Benchmark: KeccakPBenchmarkBase<Int>() {
+
+    override val state = F800()
+    override fun Int.toN(): Int = this
+
+    @Benchmark
+    fun exec() = state.keccakP()
+}
+
+@State(Scope.Benchmark)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(BenchmarkTimeUnit.MICROSECONDS)
+@Warmup(iterations = ITERATIONS, time = TIME_WARMUP)
+@Measurement(iterations = ITERATIONS, time = TIME_MEASURE)
+open class F400Benchmark: KeccakPBenchmarkBase<Short>() {
+
+    override val state = F400()
+    override fun Int.toN(): Short = toShort()
+
+    @Benchmark
+    fun exec() = state.keccakP()
+}
+
+@State(Scope.Benchmark)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(BenchmarkTimeUnit.MICROSECONDS)
+@Warmup(iterations = ITERATIONS, time = TIME_WARMUP)
+@Measurement(iterations = ITERATIONS, time = TIME_MEASURE)
+open class F200Benchmark: KeccakPBenchmarkBase<Byte>() {
+
+    override val state = F200()
+    override fun Int.toN(): Byte = toByte()
+
+    @Benchmark
+    fun exec() = state.keccakP()
 }
