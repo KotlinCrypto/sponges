@@ -45,7 +45,7 @@ open class F1600Benchmark: KeccakPBenchmarkBase<Long>() {
     override fun Int.toN(): Long = toLong()
 
     @Benchmark
-    fun exec() = state.keccakP()
+    fun benchmark() = state.keccakP()
 }
 
 @State(Scope.Benchmark)
@@ -59,7 +59,7 @@ open class F800Benchmark: KeccakPBenchmarkBase<Int>() {
     override fun Int.toN(): Int = this
 
     @Benchmark
-    fun exec() = state.keccakP()
+    fun benchmark() = state.keccakP()
 }
 
 @State(Scope.Benchmark)
@@ -73,7 +73,7 @@ open class F400Benchmark: KeccakPBenchmarkBase<Short>() {
     override fun Int.toN(): Short = toShort()
 
     @Benchmark
-    fun exec() = state.keccakP()
+    fun benchmark() = state.keccakP()
 }
 
 @State(Scope.Benchmark)
@@ -87,5 +87,5 @@ open class F200Benchmark: KeccakPBenchmarkBase<Byte>() {
     override fun Int.toN(): Byte = toByte()
 
     @Benchmark
-    fun exec() = state.keccakP()
+    fun benchmark() = state.keccakP()
 }
