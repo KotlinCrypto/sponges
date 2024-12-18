@@ -20,11 +20,16 @@ import kotlin.experimental.inv
 import kotlin.experimental.xor
 import kotlin.jvm.JvmOverloads
 
+/**
+ * Keccak-f[1600] sponge function
+ *
+ * @throws [IllegalArgumentException] when [rounds] exceeds [F1600.roundCount]
+ * */
 @JvmOverloads
 @Throws(IllegalArgumentException::class)
-public fun F1600.keccakP(numRounds: Byte = roundCount) {
+public fun F1600.keccakP(rounds: Byte = roundCount) {
     execute(
-        numRounds,
+        rounds = rounds,
         and = { this and it },
         inv = { this.inv() },
         xor = { this xor it },
@@ -37,11 +42,16 @@ public fun F1600.keccakP(numRounds: Byte = roundCount) {
     )
 }
 
+/**
+ * Keccak-f[800] sponge function
+ *
+ * @throws [IllegalArgumentException] when [rounds] exceeds [F800.roundCount]
+ * */
 @JvmOverloads
 @Throws(IllegalArgumentException::class)
-public fun F800.keccakP(numRounds: Byte = roundCount) {
+public fun F800.keccakP(rounds: Byte = roundCount) {
     execute(
-        numRounds,
+        rounds = rounds,
         and = { this and it },
         inv = { this.inv() },
         xor = { this xor it },
@@ -54,11 +64,16 @@ public fun F800.keccakP(numRounds: Byte = roundCount) {
     )
 }
 
+/**
+ * Keccak-f[400] sponge function
+ *
+ * @throws [IllegalArgumentException] when [rounds] exceeds [F400.roundCount]
+ * */
 @JvmOverloads
 @Throws(IllegalArgumentException::class)
-public fun F400.keccakP(numRounds: Byte = roundCount) {
+public fun F400.keccakP(rounds: Byte = roundCount) {
     execute(
-        numRounds,
+        rounds = rounds,
         and = { this and it },
         inv = { this.inv() },
         xor = { this xor it },
@@ -72,11 +87,16 @@ public fun F400.keccakP(numRounds: Byte = roundCount) {
     )
 }
 
+/**
+ * Keccak-f[200] sponge function
+ *
+ * @throws [IllegalArgumentException] when [rounds] exceeds [F200.roundCount]
+ * */
 @JvmOverloads
 @Throws(IllegalArgumentException::class)
-public fun F200.keccakP(numRounds: Byte = roundCount) {
+public fun F200.keccakP(rounds: Byte = roundCount) {
     execute(
-        numRounds,
+        rounds = rounds,
         and = { this and it },
         inv = { this.inv() },
         xor = { this xor it },
@@ -92,14 +112,14 @@ public fun F200.keccakP(numRounds: Byte = roundCount) {
 
 @Suppress("LocalVariableName")
 private inline fun <N: Number> State<N, *>.execute(
-    numRounds: Byte,
+    rounds: Byte,
     and: N.(other: N) -> N,
     inv: N.() -> N,
     xor: N.(other: N) -> N,
     rotateLeft: N.(n: Int) -> N,
 ) {
-    require(numRounds <= roundCount) { "numRounds cannot exceed $roundCount" }
-    if (numRounds < 1) return
+    require(rounds <= roundCount) { "rounds cannot exceed $roundCount" }
+    if (rounds < 1) return
 
     val A = this
 
@@ -109,7 +129,7 @@ private inline fun <N: Number> State<N, *>.execute(
     var a15 = A[15]; var a16 = A[16]; var a17 = A[17]; var a18 = A[18]; var a19 = A[19]
     var a20 = A[20]; var a21 = A[21]; var a22 = A[22]; var a23 = A[23]; var a24 = A[24]
 
-    for (rc in (roundCount - numRounds) until roundCount) {
+    for (rc in (roundCount - rounds) until roundCount) {
         // Theta
         var c0 = a00.xor(a05).xor(a10).xor(a15).xor(a20)
         var c1 = a01.xor(a06).xor(a11).xor(a16).xor(a21)
