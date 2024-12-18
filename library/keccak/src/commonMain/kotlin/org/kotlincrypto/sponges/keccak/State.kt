@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+@file:Suppress("FunctionName")
+
 package org.kotlincrypto.sponges.keccak
 
 import kotlin.jvm.JvmField
@@ -28,6 +30,7 @@ import kotlin.jvm.JvmSynthetic
  * @see [F1600]
  * */
 public sealed class State<N: Number, T: State<N, T>>(
+
     /**
      * The maximum number of rounds for Keccak-p
      * */
@@ -52,13 +55,16 @@ public sealed class State<N: Number, T: State<N, T>>(
 
     /**
      * Adds [data] to [state] at the provided [index]
+     *
+     * @throws [IndexOutOfBoundsException] if [index] is not between 0 and 24 (inclusive)
      * */
     @Throws(IndexOutOfBoundsException::class)
     public fun addData(index: Int, data: N) {
-        withContext { state[index] = xor(state[index], data) }
+        state[index] = state[index] XOR data
     }
 
     public abstract fun copy(): T
+
     public fun reset() {
         when (this) {
             is F200 -> state.fill(0)
@@ -89,21 +95,16 @@ public sealed class State<N: Number, T: State<N, T>>(
         return true
     }
 
-    @JvmSynthetic
-    internal abstract fun <T: Any?> withContext(block: Context<N>.() -> T): T
+    protected abstract infix fun N.XOR(data: N): N
+    protected abstract fun Long.toN(): N
 
-    internal sealed interface Context<N: Number> {
-        fun and(a: N, other: N): N
-        fun inv(a: N): N
-        fun xor(a: N, other: N): N
-        fun rotateLeft(a: N, n: Int): N
-        fun RC(index: Int): N
-    }
+    @JvmSynthetic
+    internal fun RC(index: Int): N = RC[index].toN()
 
     protected companion object {
         internal const val P_LEN: Int = 25
 
-        internal val RC = longArrayOf(
+        private val RC = longArrayOf(
             // 0x0000000000000001, 0x0000000000008082, 0x800000000000808a, 0x8000000080008000,
             1L, 32898L, -9223372036854742902L, -9223372034707259392L,
             // 0x000000000000808b, 0x0000000080000001, 0x8000000080008081, 0x8000000000008009,

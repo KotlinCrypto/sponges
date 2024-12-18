@@ -21,6 +21,7 @@ import org.kotlincrypto.endians.BigEndian
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
+@Suppress("DEPRECATION")
 class KeccakPUnitTest {
 
     private fun <N: Number> assertKeccakP(state: State<N, *>, permutation1: List<N>, permutation2: List<N>) {
