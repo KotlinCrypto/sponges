@@ -15,8 +15,6 @@
  **/
 package org.kotlincrypto.sponges.keccak
 
-import kotlin.jvm.JvmSynthetic
-
 /**
  * [State] for Keccak-f[1600]
  * */
@@ -24,7 +22,6 @@ public class F1600: State<Long, F1600> {
     public constructor(): super(roundCount = 24, state = Array(P_LEN) { 0 })
     private constructor(state: F1600): super(state.roundCount, state.state.copyOf())
     public override fun copy(): F1600 = F1600(this)
-    protected override fun Long.mixIn(data: Long): Long = this xor data
-    @JvmSynthetic
-    internal override fun RC(index: Int): Long = RC[index]
+    protected override fun Long.XOR(data: Long): Long = this xor data
+    protected override fun Long.toN(): Long = this
 }

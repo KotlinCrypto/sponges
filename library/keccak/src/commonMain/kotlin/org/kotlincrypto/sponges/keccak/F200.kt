@@ -16,7 +16,6 @@
 package org.kotlincrypto.sponges.keccak
 
 import kotlin.experimental.xor
-import kotlin.jvm.JvmSynthetic
 
 /**
  * [State] for Keccak-f[200]
@@ -25,7 +24,6 @@ public class F200: State<Byte, F200> {
     public constructor(): super(roundCount = 18, state = Array(P_LEN) { 0 })
     private constructor(state: F200): super(state.roundCount, state.state.copyOf())
     public override fun copy(): F200 = F200(this)
-    protected override fun Byte.mixIn(data: Byte): Byte = this xor data
-    @JvmSynthetic
-    internal override fun RC(index: Int): Byte = RC[index].toByte()
+    protected override fun Byte.XOR(data: Byte): Byte = this xor data
+    protected override fun Long.toN(): Byte = toByte()
 }
