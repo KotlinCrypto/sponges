@@ -20,8 +20,8 @@ import org.kotlincrypto.sponges.keccak.F1600
 import org.kotlincrypto.sponges.keccak.KeccakP
 
 @State(Scope.Benchmark)
-@BenchmarkMode(Mode.Throughput)
-@OutputTimeUnit(BenchmarkTimeUnit.MILLISECONDS)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(BenchmarkTimeUnit.MICROSECONDS)
 @Warmup(iterations = 5, time = 2)
 @Measurement(iterations = 5, time = 4)
 open class KeccakPBenchmark {
