@@ -55,7 +55,7 @@ public sealed class State<N: Number, T: State<N, T>>(
      * */
     @Throws(IndexOutOfBoundsException::class)
     public fun addData(index: Int, data: N) {
-        withContext { state[index] = xor(state[index], data) }
+        state[index] = state[index] mixIn data
     }
 
     public abstract fun copy(): T
@@ -89,16 +89,10 @@ public sealed class State<N: Number, T: State<N, T>>(
         return true
     }
 
-    @JvmSynthetic
-    internal abstract fun <T: Any?> withContext(block: Context<N>.() -> T): T
+    protected abstract infix fun N.mixIn(data: N): N
 
-    internal sealed interface Context<N: Number> {
-        fun and(a: N, other: N): N
-        fun inv(a: N): N
-        fun xor(a: N, other: N): N
-        fun rotateLeft(a: N, n: Int): N
-        fun RC(index: Int): N
-    }
+    @JvmSynthetic
+    internal abstract fun RC(index: Int): N
 
     protected companion object {
         internal const val P_LEN: Int = 25

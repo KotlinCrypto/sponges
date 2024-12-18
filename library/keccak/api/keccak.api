@@ -1,31 +1,51 @@
 public final class org/kotlincrypto/sponges/keccak/F1600 : org/kotlincrypto/sponges/keccak/State {
 	public fun <init> ()V
+	public synthetic fun RC$org_kotlincrypto_sponges_keccak_jvm (I)Ljava/lang/Number;
 	public fun copy ()Lorg/kotlincrypto/sponges/keccak/F1600;
 	public synthetic fun copy ()Lorg/kotlincrypto/sponges/keccak/State;
+	public synthetic fun mixIn (Ljava/lang/Number;Ljava/lang/Number;)Ljava/lang/Number;
 }
 
 public final class org/kotlincrypto/sponges/keccak/F200 : org/kotlincrypto/sponges/keccak/State {
 	public fun <init> ()V
+	public synthetic fun RC$org_kotlincrypto_sponges_keccak_jvm (I)Ljava/lang/Number;
 	public fun copy ()Lorg/kotlincrypto/sponges/keccak/F200;
 	public synthetic fun copy ()Lorg/kotlincrypto/sponges/keccak/State;
+	public synthetic fun mixIn (Ljava/lang/Number;Ljava/lang/Number;)Ljava/lang/Number;
 }
 
 public final class org/kotlincrypto/sponges/keccak/F400 : org/kotlincrypto/sponges/keccak/State {
 	public fun <init> ()V
+	public synthetic fun RC$org_kotlincrypto_sponges_keccak_jvm (I)Ljava/lang/Number;
 	public fun copy ()Lorg/kotlincrypto/sponges/keccak/F400;
 	public synthetic fun copy ()Lorg/kotlincrypto/sponges/keccak/State;
+	public synthetic fun mixIn (Ljava/lang/Number;Ljava/lang/Number;)Ljava/lang/Number;
 }
 
 public final class org/kotlincrypto/sponges/keccak/F800 : org/kotlincrypto/sponges/keccak/State {
 	public fun <init> ()V
+	public synthetic fun RC$org_kotlincrypto_sponges_keccak_jvm (I)Ljava/lang/Number;
 	public fun copy ()Lorg/kotlincrypto/sponges/keccak/F800;
 	public synthetic fun copy ()Lorg/kotlincrypto/sponges/keccak/State;
+	public synthetic fun mixIn (Ljava/lang/Number;Ljava/lang/Number;)Ljava/lang/Number;
 }
 
 public final class org/kotlincrypto/sponges/keccak/KeccakPKt {
 	public static final fun KeccakP (Lorg/kotlincrypto/sponges/keccak/State;)V
 	public static final fun KeccakP (Lorg/kotlincrypto/sponges/keccak/State;B)V
 	public static synthetic fun KeccakP$default (Lorg/kotlincrypto/sponges/keccak/State;BILjava/lang/Object;)V
+	public static final fun keccakP (Lorg/kotlincrypto/sponges/keccak/F1600;)V
+	public static final fun keccakP (Lorg/kotlincrypto/sponges/keccak/F1600;B)V
+	public static final fun keccakP (Lorg/kotlincrypto/sponges/keccak/F200;)V
+	public static final fun keccakP (Lorg/kotlincrypto/sponges/keccak/F200;B)V
+	public static final fun keccakP (Lorg/kotlincrypto/sponges/keccak/F400;)V
+	public static final fun keccakP (Lorg/kotlincrypto/sponges/keccak/F400;B)V
+	public static final fun keccakP (Lorg/kotlincrypto/sponges/keccak/F800;)V
+	public static final fun keccakP (Lorg/kotlincrypto/sponges/keccak/F800;B)V
+	public static synthetic fun keccakP$default (Lorg/kotlincrypto/sponges/keccak/F1600;BILjava/lang/Object;)V
+	public static synthetic fun keccakP$default (Lorg/kotlincrypto/sponges/keccak/F200;BILjava/lang/Object;)V
+	public static synthetic fun keccakP$default (Lorg/kotlincrypto/sponges/keccak/F400;BILjava/lang/Object;)V
+	public static synthetic fun keccakP$default (Lorg/kotlincrypto/sponges/keccak/F800;BILjava/lang/Object;)V
 }
 
 public abstract class org/kotlincrypto/sponges/keccak/State : java/util/Collection, kotlin/jvm/internal/markers/KMappedMarker {
@@ -46,6 +66,7 @@ public abstract class org/kotlincrypto/sponges/keccak/State : java/util/Collecti
 	public final fun getSize ()I
 	public final fun isEmpty ()Z
 	public final fun iterator ()Ljava/util/Iterator;
+	protected abstract fun mixIn (Ljava/lang/Number;Ljava/lang/Number;)Ljava/lang/Number;
 	public fun remove (Ljava/lang/Object;)Z
 	public fun removeAll (Ljava/util/Collection;)Z
 	public fun removeIf (Ljava/util/function/Predicate;)Z

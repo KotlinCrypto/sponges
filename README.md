@@ -37,7 +37,7 @@ fun main() {
     
     state.addData(index = 0, 23452345254L)
     
-    KeccakP(state)
+    state.keccakP()
     
     state.forEach {
         println(it)

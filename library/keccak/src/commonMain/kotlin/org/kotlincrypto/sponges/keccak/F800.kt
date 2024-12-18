@@ -24,18 +24,7 @@ public class F800: State<Int, F800> {
     public constructor(): super(roundCount = 22, state = Array(P_LEN) { 0 })
     private constructor(state: F800): super(state.roundCount, state.state.copyOf())
     public override fun copy(): F800 = F800(this)
-
+    protected override fun Int.mixIn(data: Int): Int = this xor data
     @JvmSynthetic
-    internal override fun <T: Any?> withContext(block: Context<Int>.() -> T): T = block(F800Context)
-
-    private object F800Context: Context<Int> {
-        override fun and(a: Int, other: Int): Int = a and other
-        override fun inv(a: Int): Int = a.inv()
-        override fun xor(a: Int, other: Int): Int = a xor other
-        override fun rotateLeft(a: Int, n: Int): Int {
-            val bitCount = n % Int.SIZE_BITS
-            return (a shl bitCount) or (a ushr (Int.SIZE_BITS - bitCount))
-        }
-        override fun RC(index: Int): Int = RC[index].toInt()
-    }
+    internal override fun RC(index: Int): Int = RC[index].toInt()
 }

@@ -17,7 +17,7 @@ package org.kotlincrypto.sponges.benchmarks
 
 import kotlinx.benchmark.*
 import org.kotlincrypto.sponges.keccak.F1600
-import org.kotlincrypto.sponges.keccak.KeccakP
+import org.kotlincrypto.sponges.keccak.keccakP
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
@@ -34,5 +34,5 @@ open class KeccakPBenchmark {
     }
 
     @Benchmark
-    fun keccakP() { KeccakP(state) }
+    fun keccakP() { state.keccakP() }
 }

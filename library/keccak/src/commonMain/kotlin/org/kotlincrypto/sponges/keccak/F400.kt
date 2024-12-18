@@ -15,8 +15,6 @@
  **/
 package org.kotlincrypto.sponges.keccak
 
-import kotlin.experimental.and
-import kotlin.experimental.inv
 import kotlin.experimental.xor
 import kotlin.jvm.JvmSynthetic
 
@@ -27,22 +25,7 @@ public class F400: State<Short, F400> {
     public constructor(): super(roundCount = 20, state = Array(P_LEN) { 0 })
     private constructor(state: F400): super(state.roundCount, state.state.copyOf())
     public override fun copy(): F400 = F400(this)
-
+    protected override fun Short.mixIn(data: Short): Short = this xor data
     @JvmSynthetic
-    internal override fun <T: Any?> withContext(block: Context<Short>.() -> T): T = block(F400Context)
-
-    private object F400Context: Context<Short> {
-        private const val MASK: Int = 0xffff
-
-        override fun and(a: Short, other: Short): Short = a and other
-        override fun inv(a: Short): Short = a.inv()
-        override fun xor(a: Short, other: Short): Short = a xor other
-        override fun rotateLeft(a: Short, n: Int): Short {
-            val bitCount = n % Short.SIZE_BITS
-            return (
-                ((a.toInt() and MASK) shl bitCount) or ((a.toInt() and MASK) ushr (Short.SIZE_BITS - bitCount))
-            ).toShort()
-        }
-        override fun RC(index: Int): Short = RC[index].toShort()
-    }
+    internal override fun RC(index: Int): Short = RC[index].toShort()
 }
