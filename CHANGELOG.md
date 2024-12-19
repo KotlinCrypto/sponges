@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version 0.3.2 (2024-12-19)
+ - Adds benchmarking to repository [[#16]][16] [[#17]][17]
+ - Refactors `State` internals (performance improvements) [[#19][19]
+     - Deprecates `KeccakP` in favor of new `State.keccakP` extension
+
 ## Version 0.3.1 (2024-08-31)
  - Updates dependencies
      - Kotlin `1.9.23` -> `1.9.24`
@@ -27,3 +32,7 @@
 
 ## Version 0.1.0 (2023-04-07)
  - Initial Release
+
+[16]: https://github.com/KotlinCrypto/sponges/pull/16
+[17]: https://github.com/KotlinCrypto/sponges/pull/17
+[19]: https://github.com/KotlinCrypto/sponges/pull/19
