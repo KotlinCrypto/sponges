@@ -20,6 +20,7 @@ import io.matthewnelson.encoding.core.Decoder.Companion.decodeToByteArray
 import org.kotlincrypto.endians.BigEndian
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
+import kotlin.test.assertEquals
 
 @Suppress("DEPRECATION")
 class KeccakPUnitTest {
@@ -32,6 +33,9 @@ class KeccakPUnitTest {
         KeccakP(state)
         printState(permutation2, state)
         assertContentEquals(permutation2, state.toList())
+
+        state.reset()
+        state.forEach { assertEquals(0L, it.toLong()) }
     }
 
     @Test

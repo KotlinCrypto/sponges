@@ -37,11 +37,8 @@ sealed class <#A: kotlin/Number, #B: org.kotlincrypto.sponges.keccak/State<#A, #
         final fun <get-roundCount>(): kotlin/Byte // org.kotlincrypto.sponges.keccak/State.roundCount.<get-roundCount>|<get-roundCount>(){}[0]
     final val size // org.kotlincrypto.sponges.keccak/State.size|{}size[0]
         final fun <get-size>(): kotlin/Int // org.kotlincrypto.sponges.keccak/State.size.<get-size>|<get-size>(){}[0]
-    final val state // org.kotlincrypto.sponges.keccak/State.state|{}state[0]
-        final fun <get-state>(): kotlin/Array<#A> // org.kotlincrypto.sponges.keccak/State.state.<get-state>|<get-state>(){}[0]
 
     abstract fun (#A).XOR(#A): #A // org.kotlincrypto.sponges.keccak/State.XOR|XOR@1:0(1:0){}[0]
-    abstract fun (kotlin/Long).toN(): #A // org.kotlincrypto.sponges.keccak/State.toN|toN@kotlin.Long(){}[0]
     abstract fun copy(): #B // org.kotlincrypto.sponges.keccak/State.copy|copy(){}[0]
     final fun addData(kotlin/Int, #A) // org.kotlincrypto.sponges.keccak/State.addData|addData(kotlin.Int;1:0){}[0]
     final fun contains(#A): kotlin/Boolean // org.kotlincrypto.sponges.keccak/State.contains|contains(1:0){}[0]
