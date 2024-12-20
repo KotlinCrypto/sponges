@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Version 0.3.3 (2024-12-20)
+ - Fixes boxing issue for Jvm due to use of generics [[#21]][21]
+
 ## Version 0.3.2 (2024-12-19)
  - Adds benchmarking to repository [[#16]][16] [[#17]][17]
  - Refactors `State` internals (performance improvements) [[#19][19]
@@ -36,3 +39,4 @@
 [16]: https://github.com/KotlinCrypto/sponges/pull/16
 [17]: https://github.com/KotlinCrypto/sponges/pull/17
 [19]: https://github.com/KotlinCrypto/sponges/pull/19
+[21]: https://github.com/KotlinCrypto/sponges/pull/21
