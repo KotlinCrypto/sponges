@@ -3,7 +3,6 @@ public final class org/kotlincrypto/sponges/keccak/F1600 : org/kotlincrypto/spon
 	public synthetic fun XOR (Ljava/lang/Number;Ljava/lang/Number;)Ljava/lang/Number;
 	public fun copy ()Lorg/kotlincrypto/sponges/keccak/F1600;
 	public synthetic fun copy ()Lorg/kotlincrypto/sponges/keccak/State;
-	public synthetic fun toN (J)Ljava/lang/Number;
 }
 
 public final class org/kotlincrypto/sponges/keccak/F200 : org/kotlincrypto/sponges/keccak/State {
@@ -11,7 +10,6 @@ public final class org/kotlincrypto/sponges/keccak/F200 : org/kotlincrypto/spong
 	public synthetic fun XOR (Ljava/lang/Number;Ljava/lang/Number;)Ljava/lang/Number;
 	public fun copy ()Lorg/kotlincrypto/sponges/keccak/F200;
 	public synthetic fun copy ()Lorg/kotlincrypto/sponges/keccak/State;
-	public synthetic fun toN (J)Ljava/lang/Number;
 }
 
 public final class org/kotlincrypto/sponges/keccak/F400 : org/kotlincrypto/sponges/keccak/State {
@@ -19,7 +17,6 @@ public final class org/kotlincrypto/sponges/keccak/F400 : org/kotlincrypto/spong
 	public synthetic fun XOR (Ljava/lang/Number;Ljava/lang/Number;)Ljava/lang/Number;
 	public fun copy ()Lorg/kotlincrypto/sponges/keccak/F400;
 	public synthetic fun copy ()Lorg/kotlincrypto/sponges/keccak/State;
-	public synthetic fun toN (J)Ljava/lang/Number;
 }
 
 public final class org/kotlincrypto/sponges/keccak/F800 : org/kotlincrypto/sponges/keccak/State {
@@ -27,7 +24,6 @@ public final class org/kotlincrypto/sponges/keccak/F800 : org/kotlincrypto/spong
 	public synthetic fun XOR (Ljava/lang/Number;Ljava/lang/Number;)Ljava/lang/Number;
 	public fun copy ()Lorg/kotlincrypto/sponges/keccak/F800;
 	public synthetic fun copy ()Lorg/kotlincrypto/sponges/keccak/State;
-	public synthetic fun toN (J)Ljava/lang/Number;
 }
 
 public final class org/kotlincrypto/sponges/keccak/KeccakPKt {
@@ -51,7 +47,6 @@ public final class org/kotlincrypto/sponges/keccak/KeccakPKt {
 public abstract class org/kotlincrypto/sponges/keccak/State : java/util/Collection, kotlin/jvm/internal/markers/KMappedMarker {
 	protected static final field Companion Lorg/kotlincrypto/sponges/keccak/State$Companion;
 	public final field roundCount B
-	protected final field state [Ljava/lang/Number;
 	public synthetic fun <init> (B[Ljava/lang/Number;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	protected abstract fun XOR (Ljava/lang/Number;Ljava/lang/Number;)Ljava/lang/Number;
 	public fun add (Ljava/lang/Number;)Z
@@ -75,7 +70,6 @@ public abstract class org/kotlincrypto/sponges/keccak/State : java/util/Collecti
 	public final fun size ()I
 	public fun toArray ()[Ljava/lang/Object;
 	public fun toArray ([Ljava/lang/Object;)[Ljava/lang/Object;
-	protected abstract fun toN (J)Ljava/lang/Number;
 }
 
 protected final class org/kotlincrypto/sponges/keccak/State$Companion {

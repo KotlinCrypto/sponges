@@ -37,8 +37,7 @@ public sealed class State<N: Number, T: State<N, T>>(
     @JvmField
     public val roundCount: Byte,
 
-    @JvmField
-    protected val state: Array<N>,
+    private val state: Array<N>,
 ): Collection<N> {
 
     init {
@@ -48,10 +47,6 @@ public sealed class State<N: Number, T: State<N, T>>(
 
     @Throws(IndexOutOfBoundsException::class)
     public operator fun get(index: Int): N = state[index]
-
-    @JvmSynthetic
-    @Throws(IndexOutOfBoundsException::class)
-    internal operator fun set(index: Int, value: N) { state[index] = value }
 
     /**
      * Adds [data] to [state] at the provided [index]
@@ -66,12 +61,14 @@ public sealed class State<N: Number, T: State<N, T>>(
     public abstract fun copy(): T
 
     public fun reset() {
-        when (this) {
-            is F200 -> state.fill(0)
-            is F400 -> state.fill(0)
-            is F800 -> state.fill(0)
-            is F1600 -> state.fill(0)
+        val zero = when (this) {
+            is F1600 -> 0L
+            is F800 -> 0
+            is F400 -> 0.toShort()
+            is F200 -> 0.toByte()
         }
+        @Suppress("UNCHECKED_CAST")
+        state.fill(zero as N)
     }
 
     final override val size: Int get() = P_LEN
@@ -96,27 +93,11 @@ public sealed class State<N: Number, T: State<N, T>>(
     }
 
     protected abstract infix fun N.XOR(data: N): N
-    protected abstract fun Long.toN(): N
 
     @JvmSynthetic
-    internal fun RC(index: Int): N = RC[index].toN()
+    internal fun lanes(): Array<N> = state
 
     protected companion object {
         internal const val P_LEN: Int = 25
-
-        private val RC = longArrayOf(
-            // 0x0000000000000001, 0x0000000000008082, 0x800000000000808a, 0x8000000080008000,
-            1L, 32898L, -9223372036854742902L, -9223372034707259392L,
-            // 0x000000000000808b, 0x0000000080000001, 0x8000000080008081, 0x8000000000008009,
-            32907L, 2147483649L, -9223372034707259263L, -9223372036854743031L,
-            // 0x000000000000008a, 0x0000000000000088, 0x0000000080008009, 0x000000008000000a,
-            138L, 136L, 2147516425L, 2147483658L,
-            // 0x000000008000808b, 0x800000000000008b, 0x8000000000008089, 0x8000000000008003,
-            2147516555L, -9223372036854775669L, -9223372036854742903L, -9223372036854743037L,
-            // 0x8000000000008002, 0x8000000000000080, 0x000000000000800a, 0x800000008000000a,
-            -9223372036854743038L, -9223372036854775680L, 32778L, -9223372034707292150L,
-            // 0x8000000080008081, 0x8000000000008080, 0x0000000080000001, 0x8000000080008008,
-            -9223372034707259263L, -9223372036854742912L, 2147483649L, -9223372034707259384L
-        )
     }
 }

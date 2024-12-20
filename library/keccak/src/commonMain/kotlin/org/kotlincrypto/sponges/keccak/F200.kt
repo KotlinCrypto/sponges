@@ -19,11 +19,12 @@ import kotlin.experimental.xor
 
 /**
  * [State] for Keccak-f[200]
+ *
+ * @see [keccakP]
  * */
 public class F200: State<Byte, F200> {
     public constructor(): super(roundCount = 18, state = Array(P_LEN) { 0 })
-    private constructor(state: F200): super(state.roundCount, state.state.copyOf())
+    private constructor(state: F200): super(state.roundCount, state.lanes().copyOf())
     public override fun copy(): F200 = F200(this)
     protected override fun Byte.XOR(data: Byte): Byte = this xor data
-    protected override fun Long.toN(): Byte = toByte()
 }
