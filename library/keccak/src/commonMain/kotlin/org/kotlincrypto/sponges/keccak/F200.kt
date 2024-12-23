@@ -23,8 +23,10 @@ import kotlin.experimental.xor
  * @see [keccakP]
  * */
 public class F200: State<Byte, F200> {
-    public constructor(): super(roundCount = 18, state = Array(P_LEN) { 0 })
-    private constructor(state: F200): super(state.roundCount, state.lanes().copyOf())
+    public constructor(): super(roundCount = 18, array = Array(P_LEN) { 0 })
+    private constructor(state: F200): super(state.roundCount, state.array.copyOf())
     public override fun copy(): F200 = F200(this)
-    protected override fun Byte.XOR(data: Byte): Byte = this xor data
+    @Throws(IndexOutOfBoundsException::class)
+    public override fun addData(index: Int, data: Byte) { array[index] = array[index] xor data }
+    public override fun reset() { array.fill(0) }
 }

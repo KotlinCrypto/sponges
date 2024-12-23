@@ -15,14 +15,17 @@
  **/
 package org.kotlincrypto.sponges.keccak
 
+
 /**
  * [State] for Keccak-f[800]
  *
  * @see [keccakP]
  * */
 public class F800: State<Int, F800> {
-    public constructor(): super(roundCount = 22, state = Array(P_LEN) { 0 })
-    private constructor(state: F800): super(state.roundCount, state.lanes().copyOf())
+    public constructor(): super(roundCount = 22, array = Array(P_LEN) { 0 })
+    private constructor(state: F800): super(state.roundCount, state.array.copyOf())
     public override fun copy(): F800 = F800(this)
-    protected override fun Int.XOR(data: Int): Int = this xor data
+    @Throws(IndexOutOfBoundsException::class)
+    public override fun addData(index: Int, data: Int) { array[index] = array[index] xor data }
+    public override fun reset() { array.fill(0) }
 }

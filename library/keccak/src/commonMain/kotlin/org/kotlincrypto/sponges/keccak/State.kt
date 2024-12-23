@@ -37,45 +37,35 @@ public sealed class State<N: Number, T: State<N, T>>(
     @JvmField
     public val roundCount: Byte,
 
-    private val state: Array<N>,
+    @JvmField
+    protected val array: Array<N>,
 ): Collection<N> {
 
     init {
         // state.size will always be 25
-        require(state.size == P_LEN) { "state.size must equal $P_LEN" }
+        require(array.size == P_LEN) { "state.size must equal $P_LEN" }
     }
 
     @Throws(IndexOutOfBoundsException::class)
-    public operator fun get(index: Int): N = state[index]
+    public operator fun get(index: Int): N = array[index]
 
     /**
-     * Adds [data] to [state] at the provided [index]
+     * Adds [data] to [data] at the provided [index]
      *
      * @throws [IndexOutOfBoundsException] if [index] is not between 0 and 24 (inclusive)
      * */
     @Throws(IndexOutOfBoundsException::class)
-    public fun addData(index: Int, data: N) {
-        state[index] = state[index] XOR data
-    }
+    public abstract fun addData(index: Int, data: N)
 
     public abstract fun copy(): T
 
-    public fun reset() {
-        val zero = when (this) {
-            is F1600 -> 0L
-            is F800 -> 0
-            is F400 -> 0.toShort()
-            is F200 -> 0.toByte()
-        }
-        @Suppress("UNCHECKED_CAST")
-        state.fill(zero as N)
-    }
+    public abstract fun reset()
 
     final override val size: Int get() = P_LEN
     final override fun isEmpty(): Boolean = false
-    final override operator fun contains(element: N): Boolean = state.contains(element)
+    final override operator fun contains(element: N): Boolean = array.contains(element)
     final override fun iterator(): Iterator<N> = object : Iterator<N> {
-        private val delegate = state.iterator()
+        private val delegate = array.iterator()
 
         override fun hasNext(): Boolean = delegate.hasNext()
         override fun next(): N = delegate.next()
@@ -86,16 +76,14 @@ public sealed class State<N: Number, T: State<N, T>>(
     }
     final override fun containsAll(elements: Collection<N>): Boolean {
         elements.forEach { n ->
-            if (!state.contains(n)) return false
+            if (!array.contains(n)) return false
         }
 
         return true
     }
 
-    protected abstract infix fun N.XOR(data: N): N
-
     @JvmSynthetic
-    internal fun lanes(): Array<N> = state
+    internal fun lanes(): Array<N> = array
 
     protected companion object {
         internal const val P_LEN: Int = 25
