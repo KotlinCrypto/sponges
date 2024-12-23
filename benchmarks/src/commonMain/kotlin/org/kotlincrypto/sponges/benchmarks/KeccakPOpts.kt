@@ -26,7 +26,14 @@ private const val TIME_MEASURE = 4
 abstract class KeccakPBenchmarkBase<N: Number> {
 
     protected abstract val state: KState<N, *>
-    protected abstract fun Int.toN(): N
+
+    @Suppress("UNCHECKED_CAST")
+    private fun Int.toN(): N = when (state) {
+        is F1600 -> toLong()
+        is F800 -> toInt()
+        is F400 -> toShort()
+        is F200 -> toByte()
+    } as N
 
     @Setup
     fun setup() {
@@ -36,56 +43,64 @@ abstract class KeccakPBenchmarkBase<N: Number> {
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(BenchmarkTimeUnit.MICROSECONDS)
+@OutputTimeUnit(BenchmarkTimeUnit.NANOSECONDS)
 @Warmup(iterations = ITERATIONS, time = TIME_WARMUP)
 @Measurement(iterations = ITERATIONS, time = TIME_MEASURE)
 open class F1600Benchmark: KeccakPBenchmarkBase<Long>() {
 
     override val state = F1600()
-    override fun Int.toN(): Long = toLong()
 
     @Benchmark
-    fun benchmark() = state.keccakP()
+    fun keccakP() = state.keccakP()
+
+    @Benchmark
+    fun addData() { repeat(10) { state.addData(it, 10) } }
 }
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(BenchmarkTimeUnit.MICROSECONDS)
+@OutputTimeUnit(BenchmarkTimeUnit.NANOSECONDS)
 @Warmup(iterations = ITERATIONS, time = TIME_WARMUP)
 @Measurement(iterations = ITERATIONS, time = TIME_MEASURE)
 open class F800Benchmark: KeccakPBenchmarkBase<Int>() {
 
     override val state = F800()
-    override fun Int.toN(): Int = this
 
     @Benchmark
-    fun benchmark() = state.keccakP()
+    fun keccakP() = state.keccakP()
+
+    @Benchmark
+    fun addData() { repeat(10) { state.addData(it, 10) } }
 }
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(BenchmarkTimeUnit.MICROSECONDS)
+@OutputTimeUnit(BenchmarkTimeUnit.NANOSECONDS)
 @Warmup(iterations = ITERATIONS, time = TIME_WARMUP)
 @Measurement(iterations = ITERATIONS, time = TIME_MEASURE)
 open class F400Benchmark: KeccakPBenchmarkBase<Short>() {
 
     override val state = F400()
-    override fun Int.toN(): Short = toShort()
 
     @Benchmark
-    fun benchmark() = state.keccakP()
+    fun keccakP() = state.keccakP()
+
+    @Benchmark
+    fun addData() { repeat(10) { state.addData(it, 10) } }
 }
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(BenchmarkTimeUnit.MICROSECONDS)
+@OutputTimeUnit(BenchmarkTimeUnit.NANOSECONDS)
 @Warmup(iterations = ITERATIONS, time = TIME_WARMUP)
 @Measurement(iterations = ITERATIONS, time = TIME_MEASURE)
 open class F200Benchmark: KeccakPBenchmarkBase<Byte>() {
 
     override val state = F200()
-    override fun Int.toN(): Byte = toByte()
 
     @Benchmark
-    fun benchmark() = state.keccakP()
+    fun keccakP() = state.keccakP()
+
+    @Benchmark
+    fun addData() { repeat(10) { state.addData(it, 10) } }
 }
