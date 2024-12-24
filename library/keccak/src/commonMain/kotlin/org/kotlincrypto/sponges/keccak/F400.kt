@@ -16,6 +16,7 @@
 package org.kotlincrypto.sponges.keccak
 
 import kotlin.experimental.xor
+import kotlin.jvm.JvmSynthetic
 
 /**
  * [State] for Keccak-f[400]
@@ -23,10 +24,31 @@ import kotlin.experimental.xor
  * @see [keccakP]
  * */
 public class F400: State<Short, F400> {
-    public constructor(): super(roundCount = 20, array = Array(P_LEN) { 0 })
-    private constructor(state: F400): super(state.roundCount, state.array.copyOf())
-    public override fun copy(): F400 = F400(this)
+
+    @get:JvmSynthetic
+    internal val array: ShortArray
+
+    public constructor(): super(roundCount = 20) {
+        array = ShortArray(P_LEN) { 0 }
+    }
+    private constructor(state: F400): super(state.roundCount) {
+        array = state.array.copyOf()
+    }
+
+    @Throws(IndexOutOfBoundsException::class)
+    public override operator fun get(index: Int): Short = array[index]
+
     @Throws(IndexOutOfBoundsException::class)
     public override fun addData(index: Int, data: Short) { array[index] = array[index] xor data }
+    public override fun copy(): F400 = F400(this)
     public override fun reset() { array.fill(0) }
+
+    public override fun iterator(): Iterator<Short> = array.iterator()
+    public override fun contains(element: Short): Boolean = array.contains(element)
+    public override fun containsAll(elements: Collection<Short>): Boolean {
+        elements.forEach { n ->
+            if (!array.contains(n)) return false
+        }
+        return true
+    }
 }

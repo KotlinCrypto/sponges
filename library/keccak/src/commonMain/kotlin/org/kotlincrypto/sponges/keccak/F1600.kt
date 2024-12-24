@@ -15,16 +15,39 @@
  **/
 package org.kotlincrypto.sponges.keccak
 
+import kotlin.jvm.JvmSynthetic
+
 /**
  * [State] for Keccak-f[1600]
  *
  * @see [keccakP]
  * */
 public class F1600: State<Long, F1600> {
-    public constructor(): super(roundCount = 24, array = Array(P_LEN) { 0 })
-    private constructor(state: F1600): super(state.roundCount, state.array.copyOf())
-    public override fun copy(): F1600 = F1600(this)
+
+    @get:JvmSynthetic
+    internal val array: LongArray
+
+    public constructor(): super(roundCount = 24) {
+        array = LongArray(P_LEN) { 0 }
+    }
+    private constructor(state: F1600): super(state.roundCount) {
+        array = state.array.copyOf()
+    }
+
+    @Throws(IndexOutOfBoundsException::class)
+    public override operator fun get(index: Int): Long = array[index]
+
     @Throws(IndexOutOfBoundsException::class)
     public override fun addData(index: Int, data: Long) { array[index] = array[index] xor data }
+    public override fun copy(): F1600 = F1600(this)
     public override fun reset() { array.fill(0) }
+
+    public override fun iterator(): Iterator<Long> = array.iterator()
+    public override fun contains(element: Long): Boolean = array.contains(element)
+    public override fun containsAll(elements: Collection<Long>): Boolean {
+        elements.forEach { n ->
+            if (!array.contains(n)) return false
+        }
+        return true
+    }
 }

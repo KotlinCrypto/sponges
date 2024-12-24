@@ -51,7 +51,7 @@ private val RC = longArrayOf(
 @Throws(IllegalArgumentException::class)
 public fun F1600.keccakP(rounds: Byte = roundCount) {
     checkRounds(rounds) ?: return
-    val A = lanes()
+    val A = array
 
     var a00 = A[ 0]; var a01 = A[ 1]; var a02 = A[ 2]; var a03 = A[ 3]; var a04 = A[ 4]
     var a05 = A[ 5]; var a06 = A[ 6]; var a07 = A[ 7]; var a08 = A[ 8]; var a09 = A[ 9]
@@ -187,7 +187,7 @@ public fun F1600.keccakP(rounds: Byte = roundCount) {
 @Throws(IllegalArgumentException::class)
 public fun F800.keccakP(rounds: Byte = roundCount) {
     checkRounds(rounds) ?: return
-    val A = lanes()
+    val A = array
 
     var a00 = A[ 0]; var a01 = A[ 1]; var a02 = A[ 2]; var a03 = A[ 3]; var a04 = A[ 4]
     var a05 = A[ 5]; var a06 = A[ 6]; var a07 = A[ 7]; var a08 = A[ 8]; var a09 = A[ 9]
@@ -323,7 +323,7 @@ public fun F800.keccakP(rounds: Byte = roundCount) {
 @Throws(IllegalArgumentException::class)
 public fun F400.keccakP(rounds: Byte = roundCount) {
     checkRounds(rounds) ?: return
-    val A = lanes()
+    val A = array
 
     var a00 = A[ 0]; var a01 = A[ 1]; var a02 = A[ 2]; var a03 = A[ 3]; var a04 = A[ 4]
     var a05 = A[ 5]; var a06 = A[ 6]; var a07 = A[ 7]; var a08 = A[ 8]; var a09 = A[ 9]
@@ -459,7 +459,7 @@ public fun F400.keccakP(rounds: Byte = roundCount) {
 @Throws(IllegalArgumentException::class)
 public fun F200.keccakP(rounds: Byte = roundCount) {
     checkRounds(rounds) ?: return
-    val A = lanes()
+    val A = array
 
     var a00 = A[ 0]; var a01 = A[ 1]; var a02 = A[ 2]; var a03 = A[ 3]; var a04 = A[ 4]
     var a05 = A[ 5]; var a06 = A[ 6]; var a07 = A[ 7]; var a08 = A[ 8]; var a09 = A[ 9]
