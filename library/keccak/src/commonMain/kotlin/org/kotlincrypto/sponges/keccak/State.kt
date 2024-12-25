@@ -18,7 +18,6 @@
 package org.kotlincrypto.sponges.keccak
 
 import kotlin.jvm.JvmField
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Core abstraction for Keccak-p[b, nr] state, or "lanes".
@@ -36,18 +35,10 @@ public sealed class State<N: Number, T: State<N, T>>(
      * */
     @JvmField
     public val roundCount: Byte,
-
-    @JvmField
-    protected val array: Array<N>,
 ): Collection<N> {
 
-    init {
-        // state.size will always be 25
-        require(array.size == P_LEN) { "state.size must equal $P_LEN" }
-    }
-
     @Throws(IndexOutOfBoundsException::class)
-    public operator fun get(index: Int): N = array[index]
+    public abstract operator fun get(index: Int): N
 
     /**
      * Adds [data] to [data] at the provided [index]
@@ -63,27 +54,6 @@ public sealed class State<N: Number, T: State<N, T>>(
 
     final override val size: Int get() = P_LEN
     final override fun isEmpty(): Boolean = false
-    final override operator fun contains(element: N): Boolean = array.contains(element)
-    final override fun iterator(): Iterator<N> = object : Iterator<N> {
-        private val delegate = array.iterator()
-
-        override fun hasNext(): Boolean = delegate.hasNext()
-        override fun next(): N = delegate.next()
-
-        override fun equals(other: Any?): Boolean = delegate == other
-        override fun hashCode(): Int = delegate.hashCode()
-        override fun toString(): String = delegate.toString()
-    }
-    final override fun containsAll(elements: Collection<N>): Boolean {
-        elements.forEach { n ->
-            if (!array.contains(n)) return false
-        }
-
-        return true
-    }
-
-    @JvmSynthetic
-    internal fun lanes(): Array<N> = array
 
     protected companion object {
         internal const val P_LEN: Int = 25
