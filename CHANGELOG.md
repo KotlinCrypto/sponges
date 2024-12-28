@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Version 0.3.4 (2024-12-28)
+ - Utilize typed arrays (`LongArray`, `IntArray`, etc..) instead of generic `Array<N>` [[#25]][25]
+ - Optimize `addData` [[#23]][23]
+
 ## Version 0.3.3 (2024-12-20)
  - Fixes boxing issue for Jvm due to use of generics [[#21]][21]
 
@@ -40,3 +44,5 @@
 [17]: https://github.com/KotlinCrypto/sponges/pull/17
 [19]: https://github.com/KotlinCrypto/sponges/pull/19
 [21]: https://github.com/KotlinCrypto/sponges/pull/21
+[23]: https://github.com/KotlinCrypto/sponges/pull/23
+[25]: https://github.com/KotlinCrypto/sponges/pull/25
