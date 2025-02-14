@@ -1,5 +1,5 @@
 [versions]
-encoding                    = "2.3.1"
+encoding                    = "2.4.0"
 
 gradle-benchmark            = "0.4.11"
 gradle-binary-compat        = "0.16.3"
