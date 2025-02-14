@@ -17,7 +17,9 @@ package org.kotlincrypto.sponges.keccak
 
 import io.matthewnelson.encoding.base16.Base16
 import io.matthewnelson.encoding.core.Decoder.Companion.decodeToByteArray
-import org.kotlincrypto.endians.BigEndian
+import org.kotlincrypto.bitops.endian.Endian.Big.beIntAt
+import org.kotlincrypto.bitops.endian.Endian.Big.beLongAt
+import org.kotlincrypto.bitops.endian.Endian.Big.beShortAt
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
@@ -70,8 +72,7 @@ class KeccakPUnitTest {
             "5246", "59A1", "5D81", "6D95", "6E14",
             "633E", "58EE", "71FF", "714C", "B38E",
         ).map {
-            val b = it.decodeToByteArray(BASE_16)
-            BigEndian.bytesToShort(b[0], b[1])
+            it.decodeToByteArray(BASE_16).beShortAt(0)
         }
 
         val permutation2 = listOf(
@@ -81,8 +82,7 @@ class KeccakPUnitTest {
             "3F8A", "2F99", "E2C2", "656B", "5F31",
             "5BA6", "CA29", "C224", "B85C", "097C",
         ).map {
-            val b = it.decodeToByteArray(BASE_16)
-            BigEndian.bytesToShort(b[0], b[1])
+            it.decodeToByteArray(BASE_16).beShortAt(0)
         }
 
         assertKeccakP(F400(), permutation1, permutation2)
@@ -98,8 +98,7 @@ class KeccakPUnitTest {
             "1A9E599A", "A3970A1F", "AB659687", "AFAB8D68", "E74B1015",
             "34001A98", "4119EFF3", "930A0E76", "87B28070", "11EFE996",
         ).map {
-            val b = it.decodeToByteArray(BASE_16)
-            BigEndian.bytesToInt(b[0], b[1], b[2], b[3])
+            it.decodeToByteArray(BASE_16).beIntAt(0)
         }
 
         val permutation2 = listOf(
@@ -109,8 +108,7 @@ class KeccakPUnitTest {
             "A2913EEE", "60754E9A", "9819063C", "F4709254", "D09F9084",
             "772DA259", "1DB35DF7", "5AA60162", "358825D5", "B3783BAB",
         ).map {
-            val b = it.decodeToByteArray(BASE_16)
-            BigEndian.bytesToInt(b[0], b[1], b[2], b[3])
+            it.decodeToByteArray(BASE_16).beIntAt(0)
         }
 
         assertKeccakP(F800(), permutation1, permutation2)
@@ -126,8 +124,7 @@ class KeccakPUnitTest {
             "05E5635A21D9AE61", "64BEFEF28CC970F2", "613670957BC46611", "B87C5A554FD00ECB", "8C3EE88A1CCF32C8",
             "940C7922AE3A2614", "1841F924A2C509E4", "16F53526E70465C2", "75F644E97F30A13B", "EAF1FF7B5CECA249",
         ).map {
-            val b = it.decodeToByteArray(BASE_16)
-            BigEndian.bytesToLong(b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7])
+            it.decodeToByteArray(BASE_16).beLongAt(0)
         }
 
         val permutation2 = listOf(
@@ -137,8 +134,7 @@ class KeccakPUnitTest {
             "FD5449A6BF174743", "97DDAD33D8994B40", "48EAD5FC5D0BE774", "E3B8C8EE55B7B03C", "91A0226E649E42E9",
             "900E3129E7BADD7B", "202A9EC5FAA3CCE8", "5B3402464E1C3DB6", "609F4E62A44C1059", "20D06CD26A8FBF5C",
         ).map {
-            val b = it.decodeToByteArray(BASE_16)
-            BigEndian.bytesToLong(b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7])
+            it.decodeToByteArray(BASE_16).beLongAt(0)
         }
 
         assertKeccakP(F1600(), permutation1, permutation2)

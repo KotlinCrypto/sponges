@@ -30,6 +30,11 @@ private val CHECK_PUBLICATION: String? by settings
 if (CHECK_PUBLICATION != null) {
     include(":tools:check-publication")
 } else {
+    listOf(
+        "keccak",
+    ).forEach { name ->
+        include(":library:$name")
+    }
+
     include(":benchmarks")
-    include(":library:keccak")
 }
