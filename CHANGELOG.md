@@ -1,7 +1,10 @@
 # CHANGELOG
 
+## Version 0.4.0 (2025-02-25)
+ - Updates `kotlin` to `2.1.10` [[#27]][27]
+
 ## Version 0.3.4 (2024-12-28)
- - Utilize typed arrays (`LongArray`, `IntArray`, etc..) instead of generic `Array<N>` [[#25]][25]
+ - Utilize typed arrays (`LongArray`, `IntArray`, etc.) instead of generic `Array<N>` [[#25]][25]
  - Optimize `addData` [[#23]][23]
 
 ## Version 0.3.3 (2024-12-20)
@@ -46,3 +49,4 @@
 [21]: https://github.com/KotlinCrypto/sponges/pull/21
 [23]: https://github.com/KotlinCrypto/sponges/pull/23
 [25]: https://github.com/KotlinCrypto/sponges/pull/25
+[27]: https://github.com/KotlinCrypto/sponges/pull/27

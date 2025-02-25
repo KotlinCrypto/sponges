@@ -39,9 +39,7 @@ fun main() {
     
     state.keccakP()
     
-    state.forEach {
-        println(it)
-    }
+    state.forEach { println(it) }
     // ...
 }
 ```
@@ -56,16 +54,16 @@ The best way to keep `KotlinCrypto` dependencies up to date is by using the
 ```kotlin
 // build.gradle.kts
 dependencies {
-    implementation("org.kotlincrypto.sponges:keccak:0.3.4")
+    implementation("org.kotlincrypto.sponges:keccak:0.4.0")
 }
 ```
 
 <!-- TAG_VERSION -->
-[badge-latest-release]: https://img.shields.io/badge/latest--release-0.3.4-blue.svg?style=flat
+[badge-latest-release]: https://img.shields.io/badge/latest--release-0.4.0-blue.svg?style=flat
 [badge-license]: https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat
 
 <!-- TAG_DEPENDENCIES -->
-[badge-kotlin]: https://img.shields.io/badge/kotlin-1.9.24-blue.svg?logo=kotlin
+[badge-kotlin]: https://img.shields.io/badge/kotlin-2.1.10-blue.svg?logo=kotlin
 
 <!-- TAG_PLATFORMS -->
 [badge-platform-android]: http://img.shields.io/badge/-android-6EDB8D.svg?style=flat
