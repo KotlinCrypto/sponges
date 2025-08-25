@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Version 0.4.1 (2025-08-25)
+ - Updates `kotlin` to `2.2.10` [[#29]][29]
+
 ## Version 0.4.0 (2025-02-25)
  - Updates `kotlin` to `2.1.10` [[#27]][27]
 
