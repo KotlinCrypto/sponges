@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Version 0.5.0 (2025-09-19)
+ - Updates `kotlin` to `2.2.20` [[#30]][30]
+ - Lower supported `KotlinVersion` to `1.8` [[#31]][31]
+
 ## Version 0.4.1 (2025-08-25)
  - Updates `kotlin` to `2.2.10` [[#29]][29]
 
@@ -53,3 +57,6 @@
 [23]: https://github.com/KotlinCrypto/sponges/pull/23
 [25]: https://github.com/KotlinCrypto/sponges/pull/25
 [27]: https://github.com/KotlinCrypto/sponges/pull/27
+[29]: https://github.com/KotlinCrypto/sponges/pull/29
+[30]: https://github.com/KotlinCrypto/sponges/pull/30
+[31]: https://github.com/KotlinCrypto/sponges/pull/31
